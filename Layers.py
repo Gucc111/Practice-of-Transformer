@@ -24,7 +24,7 @@ class DecoderLayer(nn.Module):
         super().__init__()
         self.dec_attn = MultiHeadAttention(d_model, n_head, d_k, d_v, dropout=dropout)
         self.enc_attn = MultiHeadAttention(d_model, n_head, d_k, d_v, dropout=dropout)
-        self.pos_fnn = PositionwiseFeedForward(d_model, d_inner)
+        self.pos_fnn = PositionwiseFeedForward(d_model, d_inner, dropout=dropout)
     
     def forward(self, dec_input, enc_output, dec_mask=None, enc_mask=None):
         dec_output, dec_attn_weights = self.dec_attn(dec_input, dec_input, dec_input, mask=dec_mask)

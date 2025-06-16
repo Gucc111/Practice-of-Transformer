@@ -21,9 +21,9 @@ def get_subsequent_mask(seq):
 class PositionalEncoding(nn.Module):
     pos_table: torch.Tensor
     
-    def __init__(self, d_model, n_posiion=200) -> None:
+    def __init__(self, d_model, n_position=200) -> None:
         super().__init__()
-        self.register_buffer('pos_table', self._get_sinusoid_encoding_table(d_model, n_posiion))
+        self.register_buffer('pos_table', self._get_sinusoid_encoding_table(d_model, n_position))
     
     def _get_sinusoid_encoding_table(self, d_model, n_position):
         def get_position_angle_vec(position):
@@ -97,7 +97,7 @@ class Decoder(nn.Module):
                 dec_enc_attn_weights_list.append(dec_enc_attn_weights)
         
         if return_attn_weights:
-            return dec_output, dec_attn_weights, dec_enc_attn_weights
+            return dec_output, dec_attn_weights_list, dec_enc_attn_weights_list
         return dec_output,
 
 

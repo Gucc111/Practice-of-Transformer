@@ -40,8 +40,8 @@ class MultiHeadAttention(nn.Module):
         residual = q
 
         q = self.w_q(q).view(batch_size, len_q, self.n_head, -1)
-        k = self.w_q(k).view(batch_size, len_k, self.n_head, -1)
-        v = self.w_q(v).view(batch_size, len_v, self.n_head, -1)
+        k = self.w_k(k).view(batch_size, len_k, self.n_head, -1)
+        v = self.w_v(v).view(batch_size, len_v, self.n_head, -1)
 
         q = q.transpose(1, 2)
         k = k.transpose(1, 2)
